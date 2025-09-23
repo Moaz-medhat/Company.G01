@@ -1,3 +1,8 @@
+using Company.G01.BLL.Interfaces;
+using Company.G01.BLL.Repositories;
+using Company.G01.DAL.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace Company.G01.PL
 {
     public class Program
@@ -8,6 +13,8 @@ namespace Company.G01.PL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddDbContext<CompanyDbContext>(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); });
 
             var app = builder.Build();
 
