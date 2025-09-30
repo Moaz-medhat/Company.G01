@@ -9,6 +9,9 @@
 
 
 <form asp-action="Edit">
+
+    @* <partial name="EmployeePartialView/_CreateEditPartialView" /> *@
+
     <div class="my-3">
         <label asp-for="Name" class="col-form-label"></label>
         <input asp-for="Name" class="form-control" />
@@ -83,4 +86,8 @@
     </div>
 </form>
 
+@section ValidationSection {
 
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
