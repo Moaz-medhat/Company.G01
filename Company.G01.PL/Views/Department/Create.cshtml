@@ -7,7 +7,10 @@
 <br /><br />
 
 <form asp-action="Create">
-    <div class="my-3">
+
+    <partial name="DepartmentPartialView/_CreateEditPartialView" />
+
+    @* <div class="my-3">
         <label asp-for="Code" class="col-form-label"></label>
         <input asp-for="Code" class="form-control" />
         <span asp-validation-for="Code" class="alert-warning"></span>
@@ -27,16 +30,15 @@
         <span asp-validation-for="CreateAt" class="text-danger"></span>
 
 
-                </div>
+                </div> *@
                 <div class="my-3">
         <input type="submit" class="btn btn-primary" value="Create" />
         <a asp-action="Index" class="btn btn-light">Back To List </a>
 
-                    </div>
+                 </div>
     </form>
 
 @section ValidationSection{
+    <partial name="_ValidationScriptsPartial" />
 
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }

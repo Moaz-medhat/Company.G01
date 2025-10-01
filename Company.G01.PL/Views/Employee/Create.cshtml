@@ -5,8 +5,8 @@
 
 <h1>Create Employee</h1>
 @* @{
-    // ViewData["departments"];
-} *@
+     ViewData["departments"];
+}  *@
 <br /><br />
 
 <form asp-action="Create">
@@ -78,7 +78,7 @@
         <span asp-validation-for="CreateAt" class="text-danger"></span> *@
 
 
-                </div>
+                
                 <div class="my-3">
         <input type="submit" class="btn btn-primary" value="Create" />
         <a asp-action="Index" class="btn btn-light">Back To List </a>
@@ -87,6 +87,5 @@
     </form>
 @section ValidationSection{
 
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
 }

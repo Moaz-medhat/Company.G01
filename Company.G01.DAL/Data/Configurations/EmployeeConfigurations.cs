@@ -13,7 +13,10 @@ namespace Company.G01.DAL.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.HasOne(e=>e.department).WithMany(d=>d.employees).HasForeignKey(e=>e.departmentId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(e=>e.department)
+                .WithMany(d=>d.employees)
+                .HasForeignKey(e=>e.departmentId)
+                .OnDelete(DeleteBehavior.SetNull);
 
         }
     }

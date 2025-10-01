@@ -2,6 +2,7 @@
 using Company.G01.DAL.Models;
 using Company.G01.PL.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Company.G01.PL.Controllers
 {
@@ -16,9 +17,19 @@ namespace Company.G01.PL.Controllers
             _departmentRepository = departmentRepository;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string? SearchInput)
         {
-            var employees = _EmployeeRepository.GetAll();
+            IEnumerable<Employee> employees;
+            if (string.IsNullOrEmpty(SearchInput))
+            {
+             employees = _EmployeeRepository.GetAll();
+                
+            }
+            else
+            {
+             employees = _EmployeeRepository.GetByName(SearchInput);
+
+            }
             //ViewData["Message"] = "Hello from viewData";
             //ViewBag.Message= "Hello from viewBag";
 
@@ -27,8 +38,8 @@ namespace Company.G01.PL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            //var departments = _departmentRepository.GetAll();
-            //ViewData["departments"] = departments;
+            var departments = _departmentRepository.GetAll();
+            ViewData["departments"] = departments;
             return View();
         }
 
@@ -50,6 +61,8 @@ namespace Company.G01.PL.Controllers
                    IsDeleted=employeeDto.IsDeleted,
                    Phone=employeeDto.Phone,
                    Salary=employeeDto.Salary,
+                   departmentId=employeeDto.departmentId,
+                   
                 };
                 var count = _EmployeeRepository.add(employee);
                 if (count > 0)
@@ -73,6 +86,8 @@ namespace Company.G01.PL.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
+            var departments = _departmentRepository.GetAll();
+            ViewData["departments"] = departments;
             if (id is null) return BadRequest("Invalid Id");
 
             var  employee= _EmployeeRepository.Get(id.Value);
@@ -92,6 +107,8 @@ namespace Company.G01.PL.Controllers
                 IsDeleted = employee.IsDeleted,
                 Phone = employee.Phone,
                 Salary = employee.Salary,
+                departmentId = employee.departmentId,
+               
             };
 
 
@@ -122,6 +139,8 @@ namespace Company.G01.PL.Controllers
                     IsDeleted = employeeDto.IsDeleted,
                     Phone = employeeDto.Phone,
                     Salary = employeeDto.Salary,
+                    departmentId = employeeDto.departmentId,
+                    
                 };
 
 
@@ -170,6 +189,8 @@ namespace Company.G01.PL.Controllers
                     IsDeleted = employeeDto.IsDeleted,
                     Phone = employeeDto.Phone,
                     Salary = employeeDto.Salary,
+                    departmentId = employeeDto.departmentId,
+                   
                 };
 
 
