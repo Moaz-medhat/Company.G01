@@ -18,6 +18,8 @@ namespace Company.G01.PL.Controllers
         public IActionResult Index()
         {
             var departments = _departmentRepository.GetAll();
+
+
             return View(departments);
         }
         [HttpGet]

@@ -4,12 +4,15 @@
 }
 
 <h1>Create Employee</h1>
+@* @{
+    // ViewData["departments"];
+} *@
 <br /><br />
 
 <form asp-action="Create">
-    @* <partial name="EmployeePartialView/_CreateEditPartialView" /> *@
+     <partial name="EmployeePartialView/_CreateEditPartialView" /> 
 
-        <div class="my-3">
+    @*     <div class="my-3">
             <label asp-for="Name" class="col-form-label"></label>
             <input asp-for="Name" class="form-control" />
             <span asp-validation-for="Name" class="text-danger"></span>
@@ -72,7 +75,7 @@
     <div class="my-3">
                 <label asp-for="CreateAt" class="col-form-label"></label>
                 <input asp-for="CreateAt" class="form-control" />
-        <span asp-validation-for="CreateAt" class="text-danger"></span>
+        <span asp-validation-for="CreateAt" class="text-danger"></span> *@
 
 
                 </div>
