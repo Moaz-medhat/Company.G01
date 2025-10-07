@@ -1,4 +1,5 @@
-﻿using Company.G01.BLL.Interfaces;
+﻿using AutoMapper;
+using Company.G01.BLL.Interfaces;
 using Company.G01.DAL.Models;
 using Company.G01.PL.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,16 @@ namespace Company.G01.PL.Controllers
     {
         private readonly IEmployeeRepository _EmployeeRepository;
         private readonly IDepartmentRepository _departmentRepository;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(IEmployeeRepository employeeRepository, IDepartmentRepository departmentRepository)
+        public EmployeeController(
+            IEmployeeRepository employeeRepository,
+            IDepartmentRepository departmentRepository,
+            IMapper mapper)
         {
             _EmployeeRepository = employeeRepository;
             _departmentRepository = departmentRepository;
+            _mapper = mapper;
         }
         [HttpGet]
         public IActionResult Index(string? SearchInput)
@@ -49,21 +55,22 @@ namespace Company.G01.PL.Controllers
 
             if (ModelState.IsValid)
             {
-                var employee = new Employee()
-                {
-                   Name=employeeDto.Name,
-                   Adress=employeeDto.Adress,
-                   Age=employeeDto.Age,
-                   CreateAt=employeeDto.CreateAt,
-                   HiringDate=employeeDto.HiringDate,
-                   Email=employeeDto.Email,
-                   IsActive=employeeDto.IsActive,
-                   IsDeleted=employeeDto.IsDeleted,
-                   Phone=employeeDto.Phone,
-                   Salary=employeeDto.Salary,
-                   departmentId=employeeDto.departmentId,
-                   
-                };
+                //var employee = new Employee()
+                //{
+                //   Name=employeeDto.Name,
+                //   Adress=employeeDto.Adress,
+                //   Age=employeeDto.Age,
+                //   CreateAt=employeeDto.CreateAt,
+                //   HiringDate=employeeDto.HiringDate,
+                //   Email=employeeDto.Email,
+                //   IsActive=employeeDto.IsActive,
+                //   IsDeleted=employeeDto.IsDeleted,
+                //   Phone=employeeDto.Phone,
+                //   Salary=employeeDto.Salary,
+                //   departmentId=employeeDto.departmentId,
+
+                //};
+               var employee= _mapper.Map<Employee>(employeeDto);
                 var count = _EmployeeRepository.add(employee);
                 if (count > 0)
                 {
