@@ -1,6 +1,7 @@
 using Company.G01.BLL.Interfaces;
 using Company.G01.BLL.Repositories;
 using Company.G01.DAL.Data.Context;
+using Company.G01.PL.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace Company.G01.PL
@@ -17,7 +18,7 @@ namespace Company.G01.PL
             builder.Services.AddScoped<IEmployeeRepository, EmployeeReopsitory>();
 
             builder.Services.AddDbContext<CompanyDbContext>(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); });
-
+            builder.Services.AddAutoMapper(m=>m.AddProfile(new EmployeeProfile()));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
