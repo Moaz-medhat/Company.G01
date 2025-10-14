@@ -18,37 +18,37 @@ namespace Company.G01.BLL.Repositories
         {
             _context = context;
         }
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             if (typeof(T)==typeof(Employee))
             {
-                return (IEnumerable<T>)_context.employees.Include(e=>e.department).ToList();
+                return (IEnumerable<T>) await _context.employees.Include(e=>e.department).ToListAsync();
             }
-            return _context.Set<T>().ToList();
+            return  await _context.Set<T>().ToListAsync();
         }
-        public T? Get(int id)
+        public async Task<T?> GetAsync(int id)
         {
             if (typeof(T) == typeof(Employee))
             {
-                return _context.employees.Include(e => e.department).FirstOrDefault(e=>e.Id==id) as T;
+                return await _context.employees.Include(e => e.department).FirstOrDefaultAsync(e=>e.Id==id) as T;
             }
-            return _context.Set<T>().Find(id);
+            return await _context.Set<T>().FindAsync(id);
         }
-        public int add(T model)
+        public async Task addAsync(T model)
         {
-             _context.Set<T>().Add(model);
-            return _context.SaveChanges();
+           await  _context.Set<T>().AddAsync(model);
+            
         }
-        public int update(T model)
+        public void update(T model)
         {
             _context.Set<T>().Update(model);
-            return _context.SaveChanges();
+            
         }
 
-        public int delete(T model)
+        public void delete(T model)
         {
             _context.Set<T>().Remove(model);
-            return _context.SaveChanges();
+            
         }
 
 

@@ -9,6 +9,9 @@ namespace Company.G01.PL.Mapping
         public EmployeeProfile()
         {
             CreateMap<CreateEmployeeDto, Employee>();
+            CreateMap<Employee, CreateEmployeeDto>();
+                //.ForMember(d => d.departmentName, o => o.MapFrom(s => s.department.Name));
+
         }
     }
 }
