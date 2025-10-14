@@ -19,4 +19,9 @@
     <ProjectReference Include="..\Company.G01.BLL\Company.G01.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\files\images\" />
+    <Folder Include="wwwroot\files\videos\" />
+  </ItemGroup>
+
 </Project>

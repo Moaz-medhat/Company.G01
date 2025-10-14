@@ -30,7 +30,10 @@ namespace Company.G01.PL.Dtos
 
         public int? departmentId { get; set; }
 
+        public string? departmentName { get; set; }
+        public string? ImageName { get; set; }
 
+        public IFormFile? Image { get; set; }
 
     }
 }

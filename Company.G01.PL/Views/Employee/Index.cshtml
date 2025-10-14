@@ -41,7 +41,7 @@
     <table class="table table-hover table-striped   ">
         <thead>
             <tr>
-                
+                <th>Image</th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>Email</th>
@@ -68,6 +68,8 @@
             @foreach (var item in Model)
             {
                 <tr>
+                    <td><img src="~/files/images/@item.ImageName"  class="img-fluid rounded-circle"/> </td>
+
                     <td>@item.Name </td>
                     <td>@item.Age </td>
                     <td>@item.Email </td>
@@ -88,7 +90,7 @@
                     <td>@item.department.Name </td>
                     }
 
-                    <partial name="_ButtonPartialView" model="@item.Id" />
+                    <partial name="_ButtonPartialView" model="@item.Id.ToString()" />
 
                     @* <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning">Details</a> </td>
                     <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Update</a> </td>

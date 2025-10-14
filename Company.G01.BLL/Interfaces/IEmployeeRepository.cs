@@ -16,6 +16,6 @@ namespace Company.G01.BLL.Interfaces
         //int update(Employee model);
         //int delete(Employee model);
 
-        List<Employee> GetByName(string name);
+        Task<List<Employee>> GetByNameAsync(string name);
     }
 }
